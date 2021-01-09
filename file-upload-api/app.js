@@ -5,6 +5,8 @@ const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 const fileUpload = require('express-fileupload')
 const cors = require('cors')
+const fs = require('fs')
+const shell = require('shelljs')
 
 const app = express()
 
@@ -26,22 +28,59 @@ app.use(cookieParser())
 app.use(fileUpload())
 app.use('/public', express.static(__dirname + '/public'))
 
-app.post('/upload', (req, res, next) => {
+const processImage = async (imagePath) => {
+  try {
+    const filepath = "./tmp/" + imagePath
+    shell.exec(`${__dirname}/services/script.sh`, {
+      filepath : filepath
+    })
+    // const parsedJson = await storage.bucket('journey-storage').upload(filepath, {
+    //   gzip: true,
+    //   metadata: {
+    //     cacheControl: 'no-cache',
+    //   },
+    // });
+    return "Hello";
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+var imageDir = './tmp'
+if (!fs.existsSync(imageDir)){
+  fs.mkdirSync(imageDir);
+}
+
+app.get('/files', async (req, res, next) => {
+  var response = require("./data.json")
+  res.json(response)
+})
+
+app.post('/upload', async (req, res, next) => {
   let uploadFile = req.files.file
   const fileName = req.files.file.name
-  uploadFile.mv(
-    `${__dirname}/public/files/${fileName}`,
+  await uploadFile.mv(
+    `${imageDir}/${fileName}`,
     function (err) {
       if (err) {
         console.log(err)
         return res.status(500).send(err)
       }
 
-      res.json({
-        file: `${__dirname}/public/${req.files.file.name}`,
-      })
+      // res.json({
+      //   file: `${imageDir}/${req.files.file.name}`,
+      // })
     },
   )
+  extName = path.extname(`${imageDir}/${fileName}`)
+  shell.mv(`./tmp/${fileName}`, `./tmp/image${extName}`)
+  try {
+    json = await processImage(fileName);
+    var response = require("./data.json")
+    res.json(response)
+  } catch (e) {
+    throw new Error("Process image error")
+  }
 })
 
 // catch 404 and forward to error handler
