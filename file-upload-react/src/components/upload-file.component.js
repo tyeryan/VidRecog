@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import UploadService from "../services/upload-file.service";
+<<<<<<< HEAD
 import ReactJson from 'react-json-view'
+=======
+>>>>>>> main
 
 export default class UploadFiles extends Component {
   constructor(props) {
@@ -20,8 +23,11 @@ export default class UploadFiles extends Component {
 
   componentDidMount() {
     UploadService.getFiles().then((response) => {
+<<<<<<< HEAD
       console.log("response: ")
       console.log(response["data"])
+=======
+>>>>>>> main
       this.setState({
         fileInfos: response.data,
       });
@@ -147,10 +153,15 @@ export default class UploadFiles extends Component {
 
         <div className="card">
           <div className="card-header">List of Files</div>
+<<<<<<< HEAD
           <ReactJson src={fileInfos} />
           <ul className="list-group list-group-flush">
             {
             // fileInfos &&
+=======
+          <ul className="list-group list-group-flush">
+            {fileInfos &&
+>>>>>>> main
               fileInfos.map((file, index) => (
                 <li className="list-group-item" key={index}>
                   <a href={file.url}>{file.name}</a>
