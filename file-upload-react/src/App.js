@@ -7,13 +7,8 @@ function App() {
   return (
     <div className="container" style={{ width: "600px" }}>
       <div>
-<<<<<<< HEAD
         <h3>VidRecog</h3>
         <h4>Mask/Object Detection Software</h4>
-=======
-        <h3>bezkoder.com</h3>
-        <h4>React upload multiple Files</h4>
->>>>>>> main
       </div>
 
       <UploadFiles />
