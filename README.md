@@ -4,6 +4,10 @@
 
 <p> Upload media files through the application's user interface, and through the YOLOv4 model that we used, we are able to
   identify whehter a person is wearing a face-mask or not </p>
+
+<p>Demo Link: https://youtu.be/iodvQM92A_0</p>
+
+<p>Reference taken from tensorflow-yolov4-tflite by theAIGuysCode </p>
   
   
 # Getting Started
