@@ -6,8 +6,6 @@
   identify whehter a person is wearing a face-mask or not </p>
 
 <p>Demo Link: https://youtu.be/iodvQM92A_0</p>
-
-<p>Reference taken from tensorflow-yolov4-tflite by theAIGuysCode </p>
   
   
 # Getting Started
@@ -25,3 +23,5 @@
 <pre><code>npm start</code></pre>
 
 <p> You can use the app now! Simply upload any image file to get started </p>
+
+<p>Reference taken from tensorflow-yolov4-tflite by theAIGuysCode </p>
